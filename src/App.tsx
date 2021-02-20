@@ -2,13 +2,32 @@ import React from 'react';
 
 export const App = () => {
   return (
-    <div className="App">
-      <div className="text-2xl">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic beatae harum repudiandae
-        possimus neque consectetur recusandae vel? Officiis voluptas corporis deleniti, minima id ad
-        minus asperiores soluta qui quae provident enim atque nisi voluptatibus beatae molestiae
-        autem adipisci? Dolorum consequatur dolores possimus repudiandae unde nam assumenda
-        reprehenderit alias! Doloribus, error!
+    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+      <img src="https://source.unsplash.com/random" alt="" className="w-full" />
+      <div className="px-6 py-4">
+        <div className="font-bold text-purple-500 text-xl mb-2">Photo by John Doe</div>
+        <ul>
+          <li>
+            <strong>Views: </strong> 4000
+          </li>
+          <li>
+            <strong>Downloads: </strong> 2500
+          </li>
+          <li>
+            <strong>Likes: </strong> 7100
+          </li>
+        </ul>
+      </div>
+      <div className="px-6 py-4">
+        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+          #tag1
+        </span>
+        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+          #tag2
+        </span>
+        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+          #tag3
+        </span>
       </div>
     </div>
   );
