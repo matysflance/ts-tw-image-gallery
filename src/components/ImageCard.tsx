@@ -1,34 +1,58 @@
 import React from 'react';
+import { FaEye, FaDownload, FaHeart, FaUserAlt, FaExternalLinkAlt } from 'react-icons/fa';
 
 export const ImageCard: React.FC<Props> = ({ image }) => {
   const tags = image.tags.split(', ');
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+    <div className="max-w-sm xs:max-w-none rounded overflow-hidden shadow-lg relative">
       <img src={image.webformatURL} alt="" className="w-full" />
-      <div className="px-6 py-4">
-        <div className="font-bold text-purple-500 text-xl mb-2">Photo by {image.user}</div>
-        <ul>
-          <li>
-            <strong>Views: </strong> {image.views}
-          </li>
-          <li>
-            <strong>Downloads: </strong> {image.downloads}
-          </li>
-          <li>
-            <strong>Likes: </strong> {image.likes}
-          </li>
-        </ul>
+      <div className="absolute top-0 left-0 right-0 flex justify-between">
+        <a href={image.largeImageURL} className="px-3 py-1 bg-green-500 text-white rounded-br">
+          <span className="sr-only">View on Pixabay:</span>
+          <FaExternalLinkAlt />
+        </a>
+        <div className="flex items-center px-3 py-1 bg-green-500 text-white text-sm rounded-bl">
+          <img
+            src={image.userImageURL}
+            alt={`Avatar of ${image.user}`}
+            className="w-5 h-5 rounded-full border-white mr-2"
+          />
+          <span className="sr-only">Author:</span>
+          {image.user}
+        </div>
       </div>
-      <div className="px-6 py-4">
-        {tags.map((tag, index) => (
-          <span
-            key={index}
-            className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-          >
-            #{tag}
-          </span>
-        ))}
+
+      <div className="absolute left-0 bottom-0 w-full h-2/3 flex flex-col justify-end bg-gradient-to-t from-gray-900 to-transparent bg-opacity-10 text-gray-50">
+        <div className="px-6 py-3">
+          <ul className="flex mt-2">
+            <li className="flex-1 flex flex-col justify-center items-center">
+              <span className="sr-only">Views:</span> <FaEye />
+              <span className="text-shadow-sm">{image.views}</span>
+            </li>
+            <li className="flex-1 flex flex-col justify-center items-center">
+              <span className="sr-only">Downloads:</span> <FaDownload />
+              <span className="text-shadow-sm">{image.downloads}</span>
+            </li>
+            <li className="flex-1 flex flex-col justify-center items-center">
+              <span className="sr-only">Likes:</span> <FaHeart />
+              <span className="text-shadow-sm">{image.likes}</span>
+            </li>
+          </ul>
+
+          {tags.length && (
+            <ul className="mt-3">
+              {tags.map((tag, index) => (
+                <li
+                  key={index}
+                  className="inline-block text-gray-200 rounded-full px-1 py-1 text-sm font-semibold mr-2"
+                >
+                  #{tag}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -51,7 +75,7 @@ export interface ImageInterface {
   tags: string;
   type: string;
   user: string;
-  userImageUrl: string;
+  userImageURL: string;
   user_id: number;
   views: number;
   webformatHeight: number;
