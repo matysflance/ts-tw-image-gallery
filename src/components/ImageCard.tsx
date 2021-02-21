@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaEye, FaDownload, FaHeart, FaUserAlt, FaExternalLinkAlt } from 'react-icons/fa';
+import { getUserProfileURL } from '../util';
+import { FaEye, FaDownload, FaHeart, FaExternalLinkAlt } from 'react-icons/fa';
 
 export const ImageCard: React.FC<Props> = ({ image }) => {
   const tags = image.tags.split(', ');
@@ -8,18 +9,26 @@ export const ImageCard: React.FC<Props> = ({ image }) => {
     <div className="max-w-sm xs:max-w-none rounded overflow-hidden shadow-lg relative">
       <img src={image.webformatURL} alt="" className="w-full" />
       <div className="absolute top-0 left-0 right-0 flex justify-between">
-        <a href={image.largeImageURL} className="px-3 py-1 bg-green-500 text-white rounded-br">
+        <a
+          href={image.pageURL}
+          className="px-3 py-1 bg-green-500 hover:bg-green-700 text-white rounded-br transition ease-in-out duration-200"
+        >
           <span className="sr-only">View on Pixabay:</span>
           <FaExternalLinkAlt />
         </a>
-        <div className="flex items-center px-3 py-1 bg-green-500 text-white text-sm rounded-bl">
-          <img
-            src={image.userImageURL}
-            alt={`Avatar of ${image.user}`}
-            className="w-5 h-5 rounded-full border-white mr-2"
-          />
-          <span className="sr-only">Author:</span>
-          {image.user}
+        <div className="bg-green-500 hover:bg-green-700 text-white text-sm rounded-bl transition ease-in-out duration-200">
+          <a
+            href={getUserProfileURL(image.user, image.user_id)}
+            className="flex items-center px-3 py-1"
+          >
+            <img
+              src={image.userImageURL}
+              alt={`Avatar of ${image.user}`}
+              className="w-5 h-5 rounded-full border-white mr-2"
+            />
+            <span className="sr-only">Visit author's page on Pixabay:</span>
+            {image.user}
+          </a>
         </div>
       </div>
 
@@ -40,7 +49,7 @@ export const ImageCard: React.FC<Props> = ({ image }) => {
             </li>
           </ul>
 
-          {tags.length && (
+          {tags.length ? (
             <ul className="mt-3">
               {tags.map((tag, index) => (
                 <li
@@ -51,6 +60,8 @@ export const ImageCard: React.FC<Props> = ({ image }) => {
                 </li>
               ))}
             </ul>
+          ) : (
+            false
           )}
         </div>
       </div>

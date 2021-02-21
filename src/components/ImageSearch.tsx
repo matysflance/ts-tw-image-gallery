@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
+import { ImageInterface } from './ImageCard';
 
 export const ImageSearch: React.FC<{
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-}> = ({ setSearchTerm }) => {
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  setImages: React.Dispatch<React.SetStateAction<ImageInterface[]>>;
+}> = ({ setSearchTerm, setCurrentPage, setImages }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    setCurrentPage(1);
+    setImages([]);
     setSearchTerm(searchValue);
   };
 
@@ -26,7 +31,7 @@ export const ImageSearch: React.FC<{
           />
           <button
             type="submit"
-            className="flex-shrink-0 bg-green-500 hover:bg-green-700 border-green-500 hover:border-green-700 text-sm border-4 text-white py-1 px-2 rounded"
+            className="flex-shrink-0 bg-green-500 hover:bg-green-700 border-green-500 hover:border-green-700 text-sm border-4 text-white py-1 px-2 rounded transition ease-in-out duration-200"
           >
             Search
           </button>
