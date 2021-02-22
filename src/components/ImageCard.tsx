@@ -2,11 +2,11 @@ import React from 'react';
 import { getUserProfileURL } from '../util';
 import { FaEye, FaDownload, FaHeart, FaExternalLinkAlt } from 'react-icons/fa';
 
-export const ImageCard: React.FC<Props> = ({ image }) => {
+export const ImageCard: React.FC<ImageCardProps> = ({ image }) => {
   const tags = image.tags.split(', ');
 
   return (
-    <div className="max-w-sm xs:max-w-none rounded overflow-hidden shadow-lg relative">
+    <div className="max-w-sm xs:max-w-none rounded overflow-hidden shadow-lg relative group">
       <img src={image.webformatURL} alt="" className="w-full" />
       <div className="absolute top-0 left-0 right-0 flex justify-between">
         <a
@@ -32,7 +32,7 @@ export const ImageCard: React.FC<Props> = ({ image }) => {
         </div>
       </div>
 
-      <div className="absolute left-0 bottom-0 w-full h-2/3 flex flex-col justify-end bg-gradient-to-t from-gray-900 to-transparent bg-opacity-10 text-gray-50">
+      <div className="absolute left-0 bottom-0 w-full h-2/3 flex flex-col justify-end bg-gradient-to-t from-gray-900 to-transparent bg-opacity-10 text-gray-50 group-hover:opacity-0 transition-opacity">
         <div className="px-6 py-3">
           <ul className="flex mt-2">
             <li className="flex-1 flex flex-col justify-center items-center">
@@ -94,7 +94,7 @@ export interface ImageInterface {
   webformatWidth: number;
 }
 
-interface Props {
+interface ImageCardProps {
   image: ImageInterface;
   key: number;
 }
