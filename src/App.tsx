@@ -3,12 +3,13 @@ import { fetchImages } from './api';
 import { ImageCard } from './components/ImageCard';
 import { ImageInterface } from './components/ImageCard';
 import { ImageSearch } from './components/ImageSearch';
+import { Button } from './components/Button';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 export const App: React.FC = () => {
   const [images, setImages] = useState<ImageInterface[]>([]);
-  const [totalImages, setTotalImages] = useState<number>(0);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalImages, setTotalImages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -30,7 +31,6 @@ export const App: React.FC = () => {
 
   const handleLoadMore = () => {
     setCurrentPage(currentPage + 1);
-    console.log(currentPage);
   };
 
   return (
@@ -58,13 +58,9 @@ export const App: React.FC = () => {
 
       {images.length && images.length < totalImages ? (
         <div className="text-center mt-5">
-          <button
-            type="submit"
-            className="flex-shrink-0 bg-green-500 hover:bg-green-700 border-green-500 hover:border-green-700 text-sm border-4 text-white py-1 px-2 rounded transition ease-in-out duration-200"
-            onClick={handleLoadMore}
-          >
+          <Button type="submit" onClick={handleLoadMore}>
             {isLoading ? 'Loading' : 'Load More Images'}
-          </button>
+          </Button>
         </div>
       ) : (
         false
