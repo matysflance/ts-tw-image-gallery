@@ -40,7 +40,7 @@ export const ImageSearch: React.FC<{
           <input
             type="text"
             id="searchValue"
-            className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 p-2 leading-tight focus:outline-none focus:border-green-300"
+            className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 p-2 leading-tight focus:outline-none focus:ring focus:border-green-300"
             placeholder="Start typing..."
             value={searchValue}
             onChange={handleInputChange}

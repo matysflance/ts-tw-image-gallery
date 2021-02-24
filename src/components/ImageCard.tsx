@@ -7,7 +7,7 @@ export const ImageCard: React.FC<ImageCardProps> = ({ image }) => {
   const tags = image.tags.split(', ');
 
   return (
-    <div className="max-w-sm xs:max-w-none rounded overflow-hidden shadow-lg relative group">
+    <div className="max-w-sm xs:max-w-none mx-auto rounded overflow-hidden shadow-lg relative group">
       <img src={image.webformatURL} alt="" className="w-full" />
       <div className="absolute top-0 left-0 right-0 flex justify-between">
         <ButtonLink href={image.pageURL} target="_blank" rel="noopener noreferrer">
@@ -19,11 +19,13 @@ export const ImageCard: React.FC<ImageCardProps> = ({ image }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img
-            src={image.userImageURL}
-            alt={`Avatar of ${image.user}`}
-            className="w-5 h-5 rounded-full border-white mr-2"
-          />
+          {image.userImageURL && (
+            <img
+              src={image.userImageURL}
+              alt={`Avatar of ${image.user}`}
+              className="w-5 h-5 rounded-full border-white mr-2"
+            />
+          )}
           <span className="sr-only">Visit author's page on Pixabay:</span>
           {image.user}
         </ButtonLink>
